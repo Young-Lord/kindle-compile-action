@@ -12,6 +12,12 @@ jobs:
     # Ref: https://aschmelyun.com/blog/using-docker-run-inside-of-github-actions/
       - name: Check out the repo
         uses: actions/checkout@v2
+      - name: Fetch task
+        run: |
+            cd ${{ github.workspace }}
+            wget http://ftp.gnu.org/pub/gnu/ncurses/ncurses-6.3.tar.gz
+            tar -xzf ncurses-6.3.tar.gz
+            mv ncurses-6.3/* task/
       - name: Run the build process with Docker
         uses: addnab/docker-run-action@v3
         with:

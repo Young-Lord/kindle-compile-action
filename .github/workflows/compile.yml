@@ -30,12 +30,13 @@ jobs:
                 make clean && make -j
                 make install
                 cd /src
+                chmod -R 777 /src/dist
       - name: Zip artifacts
         run: |
             cd ${{ github.workspace }}
-            tar -zcvf dist.tar.gz dist
+            zip -r dist.zip dist
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-            name: dist.tar.gz
-            path: ${{ github.workspace }}/dist.tar.gz
+            name: dist.zip
+            path: ${{ github.workspace }}/dist.zip

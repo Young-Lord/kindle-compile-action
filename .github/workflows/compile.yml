@@ -14,7 +14,7 @@ jobs:
         run: |
             cd ${{ github.workspace }}
             wget http://ftp.gnu.org/pub/gnu/ncurses/ncurses-6.3.tar.gz
-            tar -xzf ncurses-6.3.tar.gz
+            tar -xvf ncurses-6.3.tar.gz
             mv ncurses-6.3/* task/
       - name: Run the build process with Docker
         uses: addnab/docker-run-action@v3
@@ -22,7 +22,7 @@ jobs:
             image: xfangfang/gcc-4.7-arm-linux-gnueabi:latest
             options: -v ${{ github.workspace }}:/src
             run: |
-                cd /src && tar -zxvf lib.tar.gz && mv usr/lib lib
+                cd /src && tar -xvf lib.tar.gz && mv usr/lib lib
                 cd /src/task
                 ./configure --enable-gtk2 --host=arm-linux-gnueabi --with-shared --prefix=/src/dist
                 echo "LDFLAGS =  -L/usr/arm-linux-gnueabi/lib -L/src/lib" >> config.mk

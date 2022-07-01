@@ -33,9 +33,9 @@ jobs:
       - name: Zip artifacts
         run: |
             cd ${{ github.workspace }}
-            zip -r dist.zip dist
+            tar -zcvf dist.tar.gz dist
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-            name: dist.zip
-            path: ${{ github.workspace }}/dist.zip
+            name: dist.tar.gz
+            path: ${{ github.workspace }}/dist.tar.gz
